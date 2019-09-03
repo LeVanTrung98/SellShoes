@@ -46,23 +46,35 @@
                     <th >#</th>
                     <th >Name</th>
                     <th >Product</th>
+                    <th >Unit</th>
+                    <th >Start</th>
+                    <th >End</th>
                     <th >Action</th>
                 </tr>
             </thead>
             <tbody >
                 @foreach($promotion as $value)
 					<tr>
-						<td width="10%">{{$value->id}}</td>
-						<td width="35%">
+						<td width="">{{$value->id}}</td>
+						<td width="">
 							<a href="" class="hover" promotionId="{{$value->id}}">
 							{{$value['name']}}
 						</a>
 						</td>
-						<td width="35%"><a href="" class="hover" promotionId="{{$value->id}}">
+						<td width=""><a href="" class="hover" promotionId="{{$value->id}}">
 							{{$value->product->name}}
 						</a>
 						</td>
-						<td width="20%">
+						<td>
+							{{$value['unit']}} %
+						</td>
+						<td>
+							{{$value['start']}}
+						</td>
+						<td>
+							{{$value['end']}}
+						</td>
+						<td width="">
 							<a class="btn btn-danger delete_Cate" data-id="{{$value->id}}">Delete</a>
 							 <a href=""  data-id="{{$value->id}}" data-target="#myModal2" data-toggle="modal" class="btn btn-info rounded-pill edit_Cate">Edit</a>
 						</td>
@@ -83,7 +95,7 @@
 
   
 <div class="modal fade" id="myModal">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="container">
@@ -103,24 +115,28 @@
 				<form method="post" action="" id="addPromotion">
 					@csrf
 					<fieldset class="form-group">
-						<label for="formGroupExampleInput">Promotion Name<small>*</small></label>
-						<input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Category Name...">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput">Promotion Name<small>*</small></label>
+								<input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Category Name...">
+							</div>
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput2">Unit<small>*</small></label>
+								<input type="number" name="unit" class="form-control" id="formGroupExampleInput2" placeholder="Category Name...">
+							</div>
+						</div>
 					</fieldset>
 					<fieldset class="form-group">
-						<label for="formGroupExampleInput1">Code<small>*</small></label>
-						<input type="text" name="code" class="form-control" id="formGroupExampleInput1" placeholder="Category Name...">
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="formGroupExampleInput2">Unit<small>*</small></label>
-						<input type="text" name="unit" class="form-control" id="formGroupExampleInput2" placeholder="Category Name...">
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="formGroupExampleInput3">Start Day Promotion<small>*</small></label>
-						<input type="date" name="start" class="form-control" id="formGroupExampleInput3" placeholder="Category Name...">
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="formGroupExampleInput4">End Day Promotion<small>*</small></label>
-						<input type="date" name="end" class="form-control" id="formGroupExampleInput4" placeholder="Category Name...">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput3">Start Day Promotion<small>*</small></label>
+								<input type="date" name="start" class="form-control" id="formGroupExampleInput3" placeholder="Category Name...">
+							</div>
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput4">End Day Promotion<small>*</small></label>
+								<input type="date" name="end" class="form-control" id="formGroupExampleInput4" placeholder="Category Name...">
+							</div>
+						</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<label for="formGroupExampleInput5">Product ID<small>*</small></label>
@@ -166,29 +182,34 @@
 				<form id="editPromotion">
 					@csrf
 					<fieldset class="form-group">
-						<label for="formGroupExampleInput">Promotion Name<small>*</small></label>
-						<input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Category Name...">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput">Promotion Name<small>*</small></label>
+								<input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Category Name...">
+							</div>
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput2">Unit<small>*</small></label>
+								<input type="number" name="unit" max="100" class="form-control" id="formGroupExampleInput2" placeholder="Category Name...">
+							</div>
+						</div>
 					</fieldset>
 					<fieldset class="form-group">
-						<label for="formGroupExampleInput1">Code<small>*</small></label>
-						<input type="text" name="code" class="form-control" id="formGroupExampleInput1" placeholder="Category Name...">
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="formGroupExampleInput2">Unit<small>*</small></label>
-						<input type="text" name="unit" class="form-control" id="formGroupExampleInput2" placeholder="Category Name...">
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="formGroupExampleInput3">Start Day Promotion<small>*</small></label>
-						<input type="date" name="start" class="form-control" id="formGroupExampleInput3" placeholder="Category Name...">
-					</fieldset>
-					<fieldset class="form-group">
-						<label for="formGroupExampleInput4">End Day Promotion<small>*</small></label>
-						<input type="date" name="end" class="form-control" id="formGroupExampleInput4" placeholder="Category Name...">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput3">Start Day Promotion<small>*</small></label>
+								<input type="date" name="start" class="form-control" id="formGroupExampleInput3" placeholder="Category Name...">
+							</div>
+							<div class="col-sm-6">
+								<label for="formGroupExampleInput4">End Day Promotion<small>*</small></label>
+								<input type="date" name="end" class="form-control" id="formGroupExampleInput4" placeholder="Category Name...">
+							</div>
+						</div>
 					</fieldset>
 					<fieldset class="form-group">
 						<label for="formGroupExampleInput5">Product ID<small>*</small></label>
-						<select name="product_id" id="" class="form-control">
+						<select name="product_id"class="form-control" placeholder="Category Name...">
 							@foreach($listProduct as $value)
+							{{$value}}
 							<option value="{{$value->id}}">{{$value->name}}</option>
 							@endforeach
 						</select>
